@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt 
-import matplotlib.animation as animation
+from matplotlib.animation import FuncAnimation
 import numpy as np 
 # import time
 # import sys
@@ -20,17 +20,26 @@ def neighbors(x,y):
 grid[0:5,0:5]=1
 
 #Rules
-# while True:
-for x, y in zip(range(10), range(10)):
-	if grid[x,y]==1:
-		if neighbors(x,y)<2:
-			grid[x,y]=0
-		elif neighbors(x,y)>3:
-			grid[x,y]=0
-	else:
-		if neighbors(x,y)==3:
-			grid[x,y]=1
-		#time.sleep(0.1)
+
+def updatefig(i):
+	newgrid = grid.copy()
+	for x, y in zip(range(10), range(10)):
+		if newgrid[x,y]==1:
+			if neighbors(x,y)<2:
+				newgrid[x,y]=0
+			elif neighbors(x,y)>3:
+				newgrid[x,y]=0
+		else:
+			if neighbors(x,y)==3:
+				newgrid[x,y]=1
+	# 		#time.sleep(0.1)
+	return newgrid
+	
+
+#PROBLEM SEEMS TO BE WITH NEWGRID. IT'S NOT RETURNING AS AN ARRAY.
+
+
+fig, ax = plt.subplots()
 
 #To get the current axes
 ax = plt.gca()
@@ -43,10 +52,14 @@ ax.set_yticklabels([])
 ax.set_xticks([])
 ax.set_yticks([])
 
-print(grid)  #prints the array in terminal
+# print(grid)  #prints the array in terminal
 
-plt.imshow(grid, cmap='binary') #create grid, 0=white, 1=black #DO THIS AFTER MODIFYING THE ARRAY TO REFLECT CHANGES
+ani = FuncAnimation(fig, updatefig, interval=100)
+
+#plt.imshow(grid, cmap='binary') #create grid, 0=white, 1=black #DO THIS AFTER MODIFYING THE ARRAY TO REFLECT CHANGES
 plt.show() #show the plot in a new window
+
+
 print("done")
 
 # ---------------Old code------------------------
