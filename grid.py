@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt 
 import matplotlib.animation as animation
 import numpy as np 
-# import time
 # import sys
 
 
@@ -17,21 +16,22 @@ def neighbors(x,y):
 				grid[x-1, y-1], grid[x, y-1], grid[x+1, y-1]]
 	return sum(n_cells)
 
-grid[0:5,0:5]=1
+grid[3:6,5]=1
+print(grid)
+
+newgrid = grid.copy()
 
 #Rules
-# while True:
-for x, y in zip(range(10), range(10)):
-	if grid[x,y]==1:
-		if neighbors(x,y)<2:
-			grid[x,y]=0
-		elif neighbors(x,y)>3:
-			grid[x,y]=0
-	else:
-		if neighbors(x,y)==3:
-			grid[x,y]=1
-		#time.sleep(0.1)
+for x in range(10):
+	for y in range(10):
+		if grid[x,y]==0:
+			if neighbors(x,y)==3:
+				newgrid[x,y]=1
+		else:
+			if neighbors(x,y)<2 or neighbors(x,y)>3:
+				newgrid[x,y]=0
 
+print(newgrid)
 #To get the current axes
 ax = plt.gca()
 
@@ -43,7 +43,7 @@ ax.set_yticklabels([])
 ax.set_xticks([])
 ax.set_yticks([])
 
-print(grid)  #prints the array in terminal
+# print(grid)  #prints the array in terminal
 
 plt.imshow(grid, cmap='binary') #create grid, 0=white, 1=black #DO THIS AFTER MODIFYING THE ARRAY TO REFLECT CHANGES
 plt.show() #show the plot in a new window
