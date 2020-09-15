@@ -17,25 +17,24 @@ def neighbors(x,y):
 				grid[x-1, y-1], grid[x, y-1], grid[x+1, y-1]]
 	return sum(n_cells)
 
-grid[0:5,0:5]=1
+grid[3:6,5]=1
 
 #Rules
 
-def updatefig(i):
+def updatefig():
 	newgrid = grid.copy()
 	for x, y in zip(range(10), range(10)):
 		if newgrid[x,y]==1:
 			if neighbors(x,y)<2:
 				newgrid[x,y]=0
-			elif neighbors(x,y)>3:
+			if neighbors(x,y)>3:
 				newgrid[x,y]=0
-		else:
+		if newgrid[x,y]==0:
 			if neighbors(x,y)==3:
 				newgrid[x,y]=1
-	# 		#time.sleep(0.1)
+	# # 		#time.sleep(0.1)
 	return newgrid
 	
-
 #PROBLEM SEEMS TO BE WITH NEWGRID. IT'S NOT RETURNING AS AN ARRAY.
 
 
@@ -53,12 +52,12 @@ ax.set_xticks([])
 ax.set_yticks([])
 
 # print(grid)  #prints the array in terminal
+# print(updatefig())
 
-ani = FuncAnimation(fig, updatefig, interval=100)
+#ani = FuncAnimation(fig, updatefig, interval=100)
 
-#plt.imshow(grid, cmap='binary') #create grid, 0=white, 1=black #DO THIS AFTER MODIFYING THE ARRAY TO REFLECT CHANGES
+plt.imshow(grid, cmap='binary') #create grid, 0=white, 1=black #DO THIS AFTER MODIFYING THE ARRAY TO REFLECT CHANGES
 plt.show() #show the plot in a new window
-
 
 print("done")
 
