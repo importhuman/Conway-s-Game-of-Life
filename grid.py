@@ -56,26 +56,7 @@ ax.set_yticks([])
 
 # print(grid)  #prints the array in terminal
 
-#plt.imshow(grid, cmap='binary') #create grid, 0=white, 1=black #DO THIS AFTER MODIFYING THE ARRAY TO REFLECT CHANGES
 ani = FuncAnimation(fig, updatefig, interval=100)
 plt.show() #show the plot in a new window
 
 print("done")
-
-# ---------------Old code------------------------
-
-# plt.plot([1,2,3,4],[1,4,2,3])
-# plt.grid(True)
-# plt.show()
-
-
-#Make a grid
-# plt.grid(b=None, which='both', axis='both', linestyle='-', linewidth=1)
-
-
-# #Make the tick labels invisible
-# ax = plt.gca()
-# ax.set_xticklabels([])
-# ax.set_yticklabels([])
-
-# plt.show()
