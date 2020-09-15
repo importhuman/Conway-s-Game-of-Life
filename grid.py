@@ -18,45 +18,45 @@ def neighbors(x,y):
 	return sum(n_cells)
 
 grid[3:6,5]=1
+#print(grid)
+
 
 #Rules
+newgrid = grid.copy()
+def updatefig(i):
+	for x in range(10):
+		for y in range(10):
+			if grid[x,y]==0:
+				if neighbors(x,y)==3:
+					newgrid[x,y]=1
+			else:
+				if neighbors(x,y)<2 or neighbors(x,y)>3:
+					newgrid[x,y]=0
 
-def updatefig():
-	newgrid = grid.copy()
-	for x, y in zip(range(10), range(10)):
-		if newgrid[x,y]==1:
-			if neighbors(x,y)<2:
-				newgrid[x,y]=0
-			if neighbors(x,y)>3:
-				newgrid[x,y]=0
-		if newgrid[x,y]==0:
-			if neighbors(x,y)==3:
-				newgrid[x,y]=1
-	# # 		#time.sleep(0.1)
-	return newgrid
+	def update_grid():
+		global grid
+		grid = newgrid.copy()
+
+	update_grid()
+
+	plt.imshow(newgrid, cmap='binary')
 	
-#PROBLEM SEEMS TO BE WITH NEWGRID. IT'S NOT RETURNING AS AN ARRAY.
-
 
 fig, ax = plt.subplots()
 
 #To get the current axes
 ax = plt.gca()
-
 #To make x and y axis tick labels invisible
 ax.set_xticklabels([])  
 ax.set_yticklabels([])
-
 #To make x and y axis ticks invisible
 ax.set_xticks([])
 ax.set_yticks([])
 
 # print(grid)  #prints the array in terminal
-# print(updatefig())
 
-#ani = FuncAnimation(fig, updatefig, interval=100)
-
-plt.imshow(grid, cmap='binary') #create grid, 0=white, 1=black #DO THIS AFTER MODIFYING THE ARRAY TO REFLECT CHANGES
+#plt.imshow(grid, cmap='binary') #create grid, 0=white, 1=black #DO THIS AFTER MODIFYING THE ARRAY TO REFLECT CHANGES
+ani = FuncAnimation(fig, updatefig, interval=100)
 plt.show() #show the plot in a new window
 
 print("done")
