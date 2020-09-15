@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt 
 from matplotlib.animation import FuncAnimation
 import numpy as np 
-# import time
 # import sys
 
 
@@ -18,6 +17,7 @@ def neighbors(x,y):
 	return sum(n_cells)
 
 grid[3:6,5]=1
+
 #print(grid)
 
 
@@ -43,6 +43,7 @@ def updatefig(i):
 	
 
 fig, ax = plt.subplots()
+
 
 #To get the current axes
 ax = plt.gca()
