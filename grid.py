@@ -9,51 +9,15 @@ import numpy as np
 
 grid = np.zeros((51,51), dtype=np.int16) #Create 51*51 array of zeroes (index 0 to 50)
 
-grid[0:50, 20:45]=1
+grid[0:50,25]=1
 
 def neighbors(x,y):
-	#cell = grid[x,y]
-	n_cells = []
-	#middle of the grid
-	if x in range(1,50) and y in range(1,50): 
-		n_cells = [grid[x-1, y+1], grid[x, y+1], grid[x+1, y+1], 
+	n_cells = [grid[x-1, y+1], grid[x, y+1], grid[x+1, y+1], 
 					grid[x-1, y], grid[x+1, y], 
 					grid[x-1, y-1], grid[x, y-1], grid[x+1, y-1]]
-	#first column edge				
-	if x==0 and y in range(1,50):
-		n_cells = [grid[x, y+1], grid[x+1, y+1], 
-				grid[x+1, y], grid[x, y-1], grid[x+1, y-1]]
-	#last column edge
-	if x==50 and y in range(1,50):
-		n_cells = [grid[x-1, y+1], grid[x, y+1],
-				grid[x-1, y], grid[x-1, y-1], grid[x, y-1]]
-	#first row edge
-	if y==50 and x in range(1,50):
-		n_cells = [grid[x-1, y], grid[x+1, y], 
-				grid[x-1, y-1], grid[x, y-1], grid[x+1, y-1]]
-	#last row edge
-	if y==0 and x in range(1,50):
-		n_cells = [grid[x-1, y+1], grid[x, y+1], grid[x+1, y+1], 
-				grid[x-1, y], grid[x+1, y]]
-	#topleft corner
-	if x==0 and y==50:
-		n_cells = [grid[1,50], grid[0,49], grid[1,49]]
-	#topright corner
-	if x==50 and y==50:
-		n_cells = [grid[49,50], grid[49,49], grid[50,49]]
-	#bottomleft corner
-	if x==0 and y==0:
-		n_cells = [grid[0,1], grid[1,0], grid[1,1]]
-	#bottomright corner
-	if x==50 and y==0:
-		n_cells = [grid[50,1], grid[49,0], grid[49,1]]
 	return sum(n_cells)
 
-
-
-
 #print(grid)
-
 
 #Rules
 newgrid = grid.copy()
@@ -84,9 +48,6 @@ def updatefig(i):
 	
 	plt.imshow(newgrid, cmap='binary')
 	
-
-	
-
 fig, ax = plt.subplots()
 
 #---------------This part doesn't work outside the loop because of plt.cla() in loop-------------
