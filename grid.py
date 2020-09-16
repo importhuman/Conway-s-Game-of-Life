@@ -16,7 +16,7 @@ def neighbors(x,y):
 				grid[x-1, y-1], grid[x, y-1], grid[x+1, y-1]]
 	return sum(n_cells)
 
-grid[3:6,5]=1
+grid[4:7:5]=1
 
 #print(grid)
 
