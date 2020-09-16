@@ -7,7 +7,7 @@ import numpy as np
 #Force printing of entire array in terminal
 # np.set_printoptions(threshold=sys.maxsize)
 
-grid = np.zeros((11,11), dtype=np.int16) #Create 100*100 array of zeroes
+grid = np.zeros((51,51), dtype=np.int16) #Create 100*100 array of zeroes
 
 def neighbors(x,y):
 	#cell = grid[x,y]
@@ -16,7 +16,9 @@ def neighbors(x,y):
 				grid[x-1, y-1], grid[x, y-1], grid[x+1, y-1]]
 	return sum(n_cells)
 
-grid[4:7:5]=1
+
+grid[0:40, 0:35]=1
+
 
 #print(grid)
 
@@ -24,8 +26,9 @@ grid[4:7:5]=1
 #Rules
 newgrid = grid.copy()
 def updatefig(i):
-	for x in range(10):
-		for y in range(10):
+	print(i)
+	for x in range(50):
+		for y in range(50):
 			if grid[x,y]==0:
 				if neighbors(x,y)==3:
 					newgrid[x,y]=1
@@ -39,7 +42,9 @@ def updatefig(i):
 
 	update_grid()
 
+	plt.cla() #clears previous plot, making animation faster
 	plt.imshow(newgrid, cmap='binary')
+
 	
 
 fig, ax = plt.subplots()
@@ -55,8 +60,8 @@ ax.set_xticks([])
 ax.set_yticks([])
 
 # print(grid)  #prints the array in terminal
-
-ani = FuncAnimation(fig, updatefig, interval=100)
+#plt.imshow(grid, cmap='binary')
+ani = FuncAnimation(fig, updatefig, interval=100, repeat=False)
 plt.show() #show the plot in a new window
 
 print("done")
