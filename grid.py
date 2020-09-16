@@ -16,7 +16,7 @@ def neighbors(x,y):
 				grid[x-1, y-1], grid[x, y-1], grid[x+1, y-1]]
 	return sum(n_cells)
 
-grid[20:40, 25:35]=1
+grid[0:40, 0:35]=1
 
 #print(grid)
 
@@ -24,6 +24,7 @@ grid[20:40, 25:35]=1
 #Rules
 newgrid = grid.copy()
 def updatefig(i):
+	print(i)
 	for x in range(50):
 		for y in range(50):
 			if grid[x,y]==0:
@@ -39,7 +40,9 @@ def updatefig(i):
 
 	update_grid()
 
+	plt.cla() #clears previous plot, making animation faster
 	plt.imshow(newgrid, cmap='binary')
+
 	
 
 fig, ax = plt.subplots()
@@ -56,7 +59,7 @@ ax.set_yticks([])
 
 # print(grid)  #prints the array in terminal
 #plt.imshow(grid, cmap='binary')
-ani = FuncAnimation(fig, updatefig, interval=100)
+ani = FuncAnimation(fig, updatefig, interval=100, repeat=False)
 plt.show() #show the plot in a new window
 
 print("done")
