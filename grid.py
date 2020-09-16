@@ -48,7 +48,7 @@ def neighbors(x,y):
 		n_cells = [grid[50,1], grid[49,0], grid[49,1]]
 	return sum(n_cells)
 
-grid[0:50,0:50]=1
+grid[0:50, 20:45]=1
 
 
 #print(grid)
@@ -57,7 +57,7 @@ grid[0:50,0:50]=1
 #Rules
 newgrid = grid.copy()
 def updatefig(i):
-	# print(i) #Prints current iteration in terminal, for testing 
+	#print(i) #Prints current iteration in terminal, for testing 
 	for x in range(50):
 		for y in range(50):
 			if grid[x,y]==0:
@@ -74,21 +74,30 @@ def updatefig(i):
 	update_grid()
 
 	plt.cla() #clears previous plot, making animation faster
+	
+	#Placed in loop because doesn't work outside due to plt.cla()
+	ax.set_xticklabels([])  
+	ax.set_yticklabels([])
+	ax.set_xticks([])
+	ax.set_yticks([])
+	
 	plt.imshow(newgrid, cmap='binary')
+	
 
 	
 
 fig, ax = plt.subplots()
 
-
-#To get the current axes
-ax = plt.gca()
-#To make x and y axis tick labels invisible
-ax.set_xticklabels([])  
-ax.set_yticklabels([])
-#To make x and y axis ticks invisible
-ax.set_xticks([])
-ax.set_yticks([])
+#---------------This part doesn't work outside the loop because of plt.cla() in loop-------------
+# #To get the current axes
+# ax = plt.gca()
+# #To make x and y axis tick labels invisible
+# ax.set_xticklabels([])  
+# ax.set_yticklabels([])
+# #To make x and y axis ticks invisible
+# ax.set_xticks([])
+# ax.set_yticks([])
+#-------------------------------------------------------------------------------
 
 # print(grid)  #prints the array in terminal
 #plt.imshow(grid, cmap='binary')
