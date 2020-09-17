@@ -20,7 +20,7 @@ def neighbors(x,y):
 		n_cells = [grid[x-1, y+1], grid[x, y+1], grid[x+1, y+1], 
 					grid[x-1, y], grid[x+1, y], 
 					grid[x-1, y-1], grid[x, y-1], grid[x+1, y-1]]
-	#first column edge				
+	#first column edge
 	if x==0 and y in range(1,50):
 		n_cells = [grid[x, y+1], grid[x+1, y+1], 
 				grid[x+1, y], grid[x, y-1], grid[x+1, y-1]]
