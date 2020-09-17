@@ -9,7 +9,8 @@ import numpy as np
 
 grid = np.zeros((51,51), dtype=np.int16) #Create 51*51 array of zeroes (index 0 to 50)
 
-grid[0:50, 20:45]=1
+grid[15:30, 20:25]=1
+grid[25:35, 10:15]=1
 
 def neighbors(x,y):
 	#cell = grid[x,y]
@@ -59,8 +60,8 @@ def neighbors(x,y):
 newgrid = grid.copy()
 def updatefig(i):
 	#print(i) #Prints current iteration in terminal, for testing 
-	for x in range(50):
-		for y in range(50):
+	for x in range(51):
+		for y in range(51):
 			if grid[x,y]==0:
 				if neighbors(x,y)==3:
 					newgrid[x,y]=1
