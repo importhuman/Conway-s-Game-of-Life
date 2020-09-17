@@ -14,9 +14,41 @@ grid[25:35, 10:15]=1
 
 
 def neighbors(x,y):
-	n_cells = [grid[x-1, y+1], grid[x, y+1], grid[x+1, y+1], 
+	#cell = grid[x,y]
+	n_cells = []
+	#middle of the grid
+	if x in range(1,50) and y in range(1,50): 
+		n_cells = [grid[x-1, y+1], grid[x, y+1], grid[x+1, y+1], 
 					grid[x-1, y], grid[x+1, y], 
 					grid[x-1, y-1], grid[x, y-1], grid[x+1, y-1]]
+	#first column edge
+	if x==0 and y in range(1,50):
+		n_cells = [grid[x, y+1], grid[x+1, y+1], 
+				grid[x+1, y], grid[x, y-1], grid[x+1, y-1]]
+	#last column edge
+	if x==50 and y in range(1,50):
+		n_cells = [grid[x-1, y+1], grid[x, y+1],
+				grid[x-1, y], grid[x-1, y-1], grid[x, y-1]]
+	#first row edge
+	if y==50 and x in range(1,50):
+		n_cells = [grid[x-1, y], grid[x+1, y], 
+				grid[x-1, y-1], grid[x, y-1], grid[x+1, y-1]]
+	#last row edge
+	if y==0 and x in range(1,50):
+		n_cells = [grid[x-1, y+1], grid[x, y+1], grid[x+1, y+1], 
+				grid[x-1, y], grid[x+1, y]]
+	#topleft corner
+	if x==0 and y==50:
+		n_cells = [grid[1,50], grid[0,49], grid[1,49]]
+	#topright corner
+	if x==50 and y==50:
+		n_cells = [grid[49,50], grid[49,49], grid[50,49]]
+	#bottomleft corner
+	if x==0 and y==0:
+		n_cells = [grid[0,1], grid[1,0], grid[1,1]]
+	#bottomright corner
+	if x==50 and y==0:
+		n_cells = [grid[50,1], grid[49,0], grid[49,1]]
 	return sum(n_cells)
 
 #print(grid)
