@@ -1,16 +1,17 @@
 import matplotlib.pyplot as plt 
 from matplotlib.animation import FuncAnimation
 import numpy as np 
+import in_state
 #import sys
 
-
+grid = in_state.grid
 #Force printing of entire array in terminal
 #np.set_printoptions(threshold=sys.maxsize)
 
-grid = np.zeros((51,51), dtype=np.int16) #Create 51*51 array of zeroes (index 0 to 50)
+#grid = np.zeros((51,51), dtype=np.int16) #Create 51*51 array of zeroes (index 0 to 50)
 
-grid[15:30, 20:25]=1
-grid[25:35, 10:15]=1
+# grid[15:30, 20:25]=1
+# grid[25:35, 10:15]=1
 
 
 def neighbors(x,y):
