@@ -17,44 +17,44 @@ The following rules are applied to each generation of cells (that is, for each i
 
 ### Current state of the project and using it
 
-Currently, the game comprises of a single file, grid.py. It uses numpy and matplotlib to create a 51 * 51 array of zeroes (indices 0 to 50). Live and dead cells are denoted with 1s and 0s respectively. To enter the initial state of the game, give a value of 1 to the cells you want, like this:
+The game uses numpy and matplotlib to create a 51 * 51 array of zeroes (indices 0 to 50). Live and dead cells are denoted with 1s and 0s respectively. 
 
+To set the initial state of the game, open `in_state.py` and enter the coordinates as you wish to, according to the following rules:
+
+- 'x' and 'y' lists denote the x and y coordinates of the array/grid respectively
+- 3 types of data can be placed into 'x' and 'y': individual points, lists, and tuples. All of them should be separated by commas.
+- The project uses a zip function to create a combined list from 'x' and 'y'. Thus, the 1st item of 'x' is paired with 1st item of 'y', 2nd of 'x' with 2nd of 'y', and so on. Therefore, coordinates should be entered carefully.
+- To input individual points, simply enter a single number from 0 to 50 in x and y.
+- To input indiviual points with one of the same coordinate, use a list. Input the different coordinates as [a,b], and the corresponding coordinate as a single number (numbers should be from 0 to 50).
+- To input a range, use a tuple. Input the range as (a,b) in the desired coordinate list. The 2nd coordinate should be greater than the 1st, i.e, b>a. The maximum range is (0,51).
+- Do not combine tuples and lists with each other. Use them separately to assign different coordinates.
+- 'x' and 'y' should have the same number of elements. Any extra elements in either list are ignored.
+
+So, for example, the following code will create 3 isolated points:
 ```python
-grid[x,y]=1
+x = [1,2,3]
+y = [4,8,13]
 ```
 
-x and y denote the x and y coordinates in the array respectively. These can be individual points, such as
- ```python
- grid[4,5]=1
- ```
-
-but doing this will produce a single live cell in the initial state that dies in the next iteration, unless placed specifically to continue the game. Thus, for starting out, simple lines and quadrilaterals are suggested, such as
+This will create 2 points with the same y coordinate:
 ```python
-grid[0:50, 25]=1 #produces a straight line
+x = [[1,4]]
+y = [2]
 ```
-or
+This will create 2 straight lines:
 ```python
-grid[20:40, 20:40]=1 #produces a square
+x = [(1,20),(35,45)]
+y = [10,40]
 ```
 
-You can also set up multiple unconnected points and figures in the array.
-```python
-grid[15:30, 20:25]=1
-grid[25:35, 10:15]=1
-```
 
-To use this project, fork and clone this repository, make the changes to the initial state as you deem fit, run the grid.py file, and have fun watching all sorts of patterns!
+To use this project, fork and clone this repository, make the changes to `in_state.py` as you deem fit, run the `game.py` file, and have fun watching all sorts of patterns!
 
 ### Notes
 
 - This project has only been tested for Python 3.8.2.
-- Modify the grid before the 
-```python
-newgrid = grid.copy() 
-```
-line. Changing it afterwards leads to different behaviour of the initial state as of this stage. 
 - The behaviour of cells is non-ideal at the edges and corners as of this stage. This is because the grid currently acts as a finite array, and not the infinite orthogonal grid it is ideally supposed to be.
-- If you want to print out the complete array in the terminal, uncomment this segment of the code at the top
+- If you want to print out the complete array in the terminal, uncomment this segment of the code in the game.py file at the top
 ```python
 #import sys
 #np.set_printoptions(threshold=sys.maxsize)
